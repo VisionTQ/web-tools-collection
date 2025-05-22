@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Theme PFP Maker</title>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=0.5'> <!-- should be good for most phones ? -->
+
+        <link rel='stylesheet' href='src/index.css'>
+        <link rel='shortcut icon' href='src/assets/favicon_16.png' type='image/png'>
+        <link rel='apple-touch-icon' href='src/assets/logo_128.png'>
+        <link rel='image_src' href='src/assets/logo_128.png'> 
+        <meta property='og:type' content='website'>
+        <meta property='og:title' content='Theme PFP Maker'>
+        <meta property='og:url' content='https://nectarboy.github.io/theme-pfp-maker'>
+        <meta property='og:image' itemprop="image primaryImageOfPage" content='src/assets/logo_128.png'>
+        <meta property='og:description' content='customize your PFPs with theme flags !'>
+
+
+        <meta name='description' content='customize your PFPs with theme flags !'>
+        <meta name='keywords' content='theme, theme pfp maker, theme icon maker, theme month, theme pfp, theme overlay ring icon'>
+        <meta name='author' content='github.com/visiontq'>
+
+        <!-- PfpPride scripts -->
+        <script src='src/overlay/overlayObject.js'></script>
+        <script src='src/overlay/presetOverlays.js'></script>
+        <script src='src/overlay/imageEditor.js'></script>
+        <script src='src/mouse.js'></script>
+        <script src='src/picker.js' defer></script>
+        <script src='src/index.js' defer></script>
+    </head>
+
+    <body>
+
+        <!-- Top bar -->
+        <div class='topBar'>
+            <div class='topSub'> <!-- stfu -->
+                <span class='topTitle'>
+                    <img src='src/assets/favicon_24.png'>
+                    <i class='topTitle'>Theme PFP Maker</i> |
+                </span>
+                <span class='topDesc'>customize your PFPs with theme flags ! v1.3</span>
+                <br>
+
+                <marquee id='themeBanner'></span></marquee>
+                <script>
+                    if ((new Date()).getMonth() === 5) {
+                        const el = document.createElement('span');
+                        el.className = 'themeText';
+                        el.innerHTML = 'happy theme month | '.repeat(12);
+
+                        document.getElementById('themeBanner').appendChild(el);
+                    }
+
+                    
+                </script>
+            </div>
+        </div>
+        <br>
+
+        <!-- Main dividers -->
+        <div class='outerBox'>
+
+            <!-- Upload div -->
+            <div id='uploadDiv' class='mainBox' style='display: none'>
+                <div class='bigLayer' style='overflow-y: hidden'>
+                    <span>
+                        drap and drop an image !<br>
+                        (or click that icon)
+                        (or paste the image)
+                    </span>
+                    <hr class='line'>
+
+                    <!-- Upload image -->
+                    <div class='centerImgFrame'>
+                        <span class='centerImgHelper'></span>
+
+                        <input type='file' id='uploadButton' style='display: none'>
+                        <label for='uploadButton'>
+                            <img src='src/assets/upload.png' id='uploadButton' class='centerImg uploadImg' draggable='false'>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Export div -->
+            <div id='exportDiv' class='mainBox' style='display: none'>
+                <div class='bigLayer' style='overflow-y: hidden'>
+                    <span>
+                        right click and save the image !<br>
+                        (tap and hold if on mobile)
+                    </span>
+                    <hr class='line'>
+
+                    <div id='continueEditing' class='button otherFlagButton'>
+                        <span>Continue</span>
+                        <br><span>Editing</span>
+                    </div>
+
+                    <!-- Upload image -->
+                    <div class='centerImgFrame'>
+                        <span class='centerImgHelper'></span>
+                        <img id='exportEl' class='exportImg'>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Editor div -->
+            <div id='editorDiv' class='mainBox' style='display: none'>
+                <div id='editor'>
+                    <!-- Left side -->
+                    <div class='leftSide'>
+                        <div class='sideWrap'>
+
+                            <!-- Preview -->
+                            <div class='mediumLayer'>
+                                <span>
+                                    this is your profile pic !<br>
+                                    drag it to move the image position !
+                                </span>
+                                <hr class='line'>
+
+                                <canvas id='mainCanvas' class='pfpPreview' width='500' height='500'></canvas>
+                            </div>
+                            <br>
+
+                            <!-- Overlay Select -->
+                            <div class='smallLayer'>
+                                <span>change the theme overlay !</span>
+                                <hr class='line'>
+
+                                <div class="theme-picker">
+                                    <!-- fuck tables >:( -->
+                                    <div id='flagButtonDiv' class='flagButtonDiv'>
+                                        <!-- Custom overlay image input -->
+                                        <input type='file' id='otherFlagInput' style='display: none'>
+                                    </div>
+                                    <div id="color-picker" class="color-picker-main">
+                                        <div class="color-picker">
+                                            <canvas id="color-block" height="150" width="150"></canvas>
+                                            <span class="color-picker-block-indicator"></span>
+                                        </div>
+                                        <div class="color-picker">
+                                            <canvas id="color-strip" height="150" width="30"></canvas>
+                                            <span class="color-picker-strip-indicator"></span>
+                                        </div>
+                                        <canvas id="color"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Right side -->
+                    <div class='rightSide'>
+                        <div class='sideWrap'>
+                            
+                            <!-- Settings -->
+                            <div class='bigLayer'>
+                                <div class='exportDivWrapper'>
+                                    <span>more settings !</span>
+                                    <hr class='line'>
+
+                                    <div>
+                                        <!-- Image scale -->
+                                        <span>image zoom</span>
+                                        <br>
+                                        <input type='range' id='imgScaleInput' class='slider' min='0' max='3' step='0.025'>
+                                        <br>
+
+                                        <!-- Ring scale -->
+                                        <span>ring scale</span>
+                                        <br>
+                                        <input type='range' id='ringScaleInput' class='slider' min='0' max='1' step='0.025'>
+                                        <br>
+
+                                        <!-- Ring scale -->
+                                        <span>blur</span>
+                                        <br>
+                                        <input type='range' id='blurInput' class='slider' min='0' max='50' step='0.5' value='0'>
+                                        <br>
+                                    </div>
+                                    <br>
+
+                                    <div class='flagButtonDiv'>
+                                        <!-- Reset image scale -->
+                                        <div id='resetImageScaleButton' class='button otherFlagButton'>
+                                            <span>Default Image</span>
+                                            <br><span>Zoom</span>
+                                        </div>
+
+                                        <!-- Reset ring scale -->
+                                        <div id='resetRingScaleButton' class='button otherFlagButton'>
+                                            <span>Default</span>
+                                            <br><span>Ring Scale</span>
+                                        </div>
+
+                                        <!-- Reset image offset -->
+                                        <div id='resetDragOffButton' class='button otherFlagButton'>
+                                            <span>Center Image</span>
+                                            <br><span>Position</span> <!-- i use code names ok ~w~ -->
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+
+                                    <div class='flagButtonDiv'>
+                                        <!-- Overlay mode text -->
+                                        <span id='flagModeText'>overlay mode: ring</span>
+
+                                        <div class='verticalCenter'>
+                                            <!-- Overlay mode toggle -->
+                                            <div id='flagModeToggle' class='toggle'>
+                                                <div id='flagModeToggleHandle' class='toggleHandle'></div>
+                                            </div>
+                                            <!-- Overlay mode preview canvas -->
+                                            <div style='padding: 8px'>
+                                                <canvas id='flagModePreview' class='pfpModePreview' width=32 height=32></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Export settings and stuff -->
+                                    <div class='exportDiv'>
+                                        <div>
+                                            <button id='chooseNewButton' class='button newImgButton'>Choose New Image</button>
+                                            <div style='height: 12px'></div>
+                                            <button id='exportButton' class='button greenButton'>Export and Open Image</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br>
+
+        <div style='text-align: center'>
+            <span class='topDesc'>nectarboy | 2022 | <a class='topDesc' href='https://github.com/nectarboy/theme-pfp-maker/'>source</a></span>
+        </div>
+    </body>
+</html>

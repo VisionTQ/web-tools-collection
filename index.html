@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Tools Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .tools-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tool-link {
+            display: block;
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .tool-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .tool-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .tool-description {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .note {
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: #2e7d32;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Tools Collection</h1>
+    
+    <div class="note">
+        Each tool is in its own folder with all required files (JavaScript, CSS, images, etc.)
+    </div>
+
+    <ul class="tools-list">
+        <li>
+            <a href="tools/image-search/index.html" class="tool-link">
+                <div class="tool-name">Reverse Image Search</div>
+                <div class="tool-description">Search for similar images across multiple search engines</div>
+            </a>
+        </li>
+        <li>
+            <a href="tools/discord-lookup/index.html" class="tool-link">
+                <div class="tool-name">Discord Entity Lookup</div>
+                <div class="tool-description">Look up information about Discord users, servers, and channels</div>
+            </a>
+        </li>
+        <li>
+            <a href="tools/pfp-maker/index.html" class="tool-link">
+                <div class="tool-name">PFP Maker</div>
+                <div class="tool-description">Create and customize profile pictures with various effects</div>
+            </a>
+        </li>
+    </ul>
+</body>
+</html> 
