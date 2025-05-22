@@ -4,89 +4,185 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Tools Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #252525;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --card-bg: #2d2d2d;
+            --card-hover: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            background: #f0f0f0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            color: #333;
-            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .tools-list {
-            list-style: none;
-            padding: 0;
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .tool-link {
-            display: block;
-            padding: 15px;
-            margin: 10px 0;
-            background: white;
-            border-radius: 8px;
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
             text-decoration: none;
-            color: #333;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
+            color: var(--text-primary);
+            display: block;
         }
 
-        .tool-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        .tool-card:hover {
+            transform: translateY(-5px);
+            background: var(--card-hover);
+            border-color: var(--accent);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover .tool-icon {
+            transform: scale(1.1);
+            color: #8b5cf6;
         }
 
         .tool-name {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 5px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
         .tool-description {
-            color: #666;
-            font-size: 0.9em;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
-        .note {
-            background: #e8f5e9;
-            padding: 10px;
-            border-radius: 8px;
-            margin: 20px 0;
-            color: #2e7d32;
-            font-size: 0.9em;
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
         }
     </style>
 </head>
 <body>
-    <h1>Web Tools Collection</h1>
-    
-    <div class="note">
-        Each tool is in its own folder with all required files (JavaScript, CSS, images, etc.)
-    </div>
+    <div class="container">
+        <header>
+            <h1>Web Tools Collection</h1>
+            <p class="subtitle">A collection of useful web tools to help with your daily tasks</p>
+        </header>
 
-    <ul class="tools-list">
-        <li>
-            <a href="tools/image-search/index.html" class="tool-link">
+        <div class="tools-grid">
+            <a href="tools/image-search/index.html" class="tool-card">
+                <i class="fas fa-search tool-icon"></i>
                 <div class="tool-name">Reverse Image Search</div>
-                <div class="tool-description">Search for similar images across multiple search engines</div>
+                <div class="tool-description">Search for similar images across multiple search engines including Google and Yandex</div>
             </a>
-        </li>
-        <li>
-            <a href="tools/discord-lookup/index.html" class="tool-link">
+
+            <a href="tools/discord-lookup/index.html" class="tool-card">
+                <i class="fab fa-discord tool-icon"></i>
                 <div class="tool-name">Discord Entity Lookup</div>
                 <div class="tool-description">Look up information about Discord users, servers, and channels</div>
             </a>
-        </li>
-        <li>
-            <a href="tools/pfp-maker/index.html" class="tool-link">
+
+            <a href="tools/pfp-maker/index.html" class="tool-card">
+                <i class="fas fa-user-circle tool-icon"></i>
                 <div class="tool-name">PFP Maker</div>
-                <div class="tool-description">Create and customize profile pictures with various effects</div>
+                <div class="tool-description">Create and customize profile pictures with various effects and filters</div>
             </a>
-        </li>
-    </ul>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Web Tools Collection. Made with ❤️ for the community.</p>
+        </footer>
+    </div>
 </body>
 </html> 
